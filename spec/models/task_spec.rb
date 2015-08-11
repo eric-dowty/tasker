@@ -43,4 +43,15 @@ RSpec.describe Task, type: :model do
                        start_date: DateTime.now)
     expect(task.status).to eq('incomplete')
   end
+
+  it 'belongs to a user and a list' do
+    task = Task.create(list_id:    @list.id,
+                       user_id:    @user.id,
+                       title:      nil,
+                       notes:      'some notes',
+                       due_date:   DateTime.now,
+                       start_date: DateTime.now)
+    expect(task.user).to eq(@user)
+    expect(task.list).to eq(@list)
+  end
 end
