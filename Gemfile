@@ -14,6 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 group :development, :test do
+  gem 'database_cleaner'
   gem 'pry'
   gem 'rspec-rails'
   gem 'web-console', '~> 2.0'
