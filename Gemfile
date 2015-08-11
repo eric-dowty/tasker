@@ -18,10 +18,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'web-console', '~> 2.0'
   gem 'guard-rspec', require: false
-<<<<<<< HEAD
   gem 'emoji-rspec', git: "git@github.com:carhartl/emoji-rspec.git", branch: "rspec-3"
-=======
->>>>>>> 889b3680ee2ab18608bda660436c881681195bb7
   gem 'spring'
 end
 
