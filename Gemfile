@@ -20,5 +20,7 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'emoji-rspec', git: "git@github.com:carhartl/emoji-rspec.git", branch: "rspec-3"
   gem 'spring'
+  gem 'teaspoon'
+  gem 'teaspoon-mocha'
 end
 
