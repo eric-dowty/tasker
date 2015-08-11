@@ -17,6 +17,8 @@ gem 'responders'
 gem 'underscore-rails'
 gem 'awesome_print'
 gem 'faker'
+gem 'figaro'
+gem 'omniauth-github'
 
 group :production do
   gem 'rails_12factor'

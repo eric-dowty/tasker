@@ -1,0 +1,11 @@
+<div><%= @user.id %></div>
+
+<div id='user_image'><img src="<%= @user.image_urlprout %>"></div>
+
+<div id="github-login">
+  <%= link_to "GitHub Login", '/auth/github', class: 'github-btn', id: 'login-btn', method: :get %>
+</div>
+
+<div id="github-logout">
+  <%= link_to "Logout", logout_path, class: 'github-btn', id: 'logout-btn', method: :delete %>
+</div>

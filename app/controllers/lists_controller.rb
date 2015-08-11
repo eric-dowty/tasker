@@ -4,7 +4,7 @@ class ListsController < ApplicationController
   respond_to :json
 
   def index
-    #Capybara view tests
+    @user = logged_in_user
   end
 
   def show
