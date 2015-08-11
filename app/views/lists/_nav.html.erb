@@ -1,0 +1,15 @@
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Tasker</a>
+      <div class="hide-on-small-only">
+        <% if nickname == "Guest" %>
+          <h1 id="guest_message">Logged in as Guest!</h1>
+          <%= link_to "GitHub Login", '/auth/github', class: 'github-btn', id: 'login-btn', method: :get %>
+        <% else %>
+          <h1 id="user_message">Welcome <%= nickname %>!</h1>
+          <img id="nav_image" src="<%= image_url %>">
+          <%= link_to "Logout", logout_path, class: 'github-btn', id: 'logout-btn', method: :delete %>
+        <% end %>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,6 @@
+function setStaticButtons(){
+
+  // setListEditShow();
+
+}
+

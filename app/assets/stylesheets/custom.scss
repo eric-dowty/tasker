@@ -1,0 +1,77 @@
+.brand-logo {
+  margin-left: 20px;
+}
+
+#nav_image {
+  width: 40px;
+  border-radius: 15px;
+  position: absolute;
+  top: 17px;
+  right: 20px;
+  border: solid white 2px;
+}
+
+#guest_message {
+  position: absolute;
+  right: 20px;
+  top: -35px;
+  font-size: 110%;
+}
+
+#user_message {
+  position: absolute;
+  right: 65px;
+  top: -35px;
+  font-size: 110%; 
+}
+
+#login-btn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+#logout-btn {
+  position: absolute;
+  right: 65px;
+  top: 20px;
+}
+
+.github-btn {
+  font-size: 90%;
+  color: #00CCFF;
+}
+
+.github-btn:hover {
+  color: white;
+}
+
+#user_image img {
+  width: 60px;
+}
+
+#user_id {
+  visibility: hidden;
+}
+
+#lists {
+  margin-top:20px;
+}
+
+#list_view {
+  margin-top: 40px;
+}
+
+#create_list:hover {
+  color: #01579b;
+}
+
+#list_description {
+  font-size: 115%;
+}
+
+.btn {
+  width: 150px;
+  margin: 5px;
+  text-align: center;
+}
