@@ -74,7 +74,39 @@ RSpec.describe ListsController, type: :controller do
       expect(updated_list[:title]).to eq('new list')
       expect(updated_list[:description]).to eq('a new list')
     end
+  end
 
+  describe 'DELETE #destroy' do
+    it 'can delete a list' do
+      expect(List.count).to eq(0)
+      List.create(title: 'new list', description: 'a new list')
+      expect(List.count).to eq(1)
+      list = List.first
+      delete :destroy, format: :json, id: list.id
+      expect(List.count).to eq(0)
+    end
+  end
+
+  describe 'GET #all_lists' do
+    it 'can return all lists' do
+      3.times { List.create(title: 'new list', description: 'a new list') }
+      get :all_lists, format: :json
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data.count).to eq(3)
+      expect(data[0][:title]).to eq('new list')
+    end
+  end
+
+  describe 'GET #show' do
+    it 'can return a single list' do
+      List.create(title: 'first list', description: 'a new list')
+      List.create(title: 'second list', description: 'a new list')
+      List.create(title: 'third list', description: 'a new list')
+      list = List.second
+      get :show, format: :json, id: list.id
+      data = JSON.parse(response.body, symbolize_names: true)
+      expect(data[:title]).to eq('second list')
+    end
   end
 
 end

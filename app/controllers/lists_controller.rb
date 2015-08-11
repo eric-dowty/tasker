@@ -8,11 +8,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    #Capybara view tests
-  end
-
-  def edit
-    #API endpoint
+    respond_with List.find(params[:id]), location: nil
   end
 
   def create
@@ -20,16 +16,15 @@ class ListsController < ApplicationController
   end
 
   def update
-    updated_list = List.update_list(params[:id], list_params)
-    respond_with updated_list, location: nil
+    respond_with List.update_list(params[:id], list_params), location: nil
   end
 
   def destroy
-    #API endpoint
+    respond_with List.find(params[:id]).destroy, location: nil
   end
 
   def all_lists
-    #API endpoint
+    respond_with List.all, location: nil
   end
 
   private

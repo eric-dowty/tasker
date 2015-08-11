@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :lists, only: [:index, :show, :edit, :create, :update, :destroy]
+  resources :lists, only: [:index, :show, :create, :update, :destroy]
   get '/all_lists', to: 'lists#all_lists'
 
   resources :tasks, only: [:edit, :create, :update]
