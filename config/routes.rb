@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get    '/auth/:provider/callback', to: 'sessions#create'
   delete                  '/logout', to: 'sessions#destroy'
 
+  post '/incoming_sms', to: 'texts#incoming_sms'
+
   root 'lists#index'
 
 end

@@ -19,6 +19,7 @@ gem 'awesome_print'
 gem 'faker'
 gem 'figaro'
 gem 'omniauth-github'
+gem 'twilio-ruby'
 
 group :production do
   gem 'rails_12factor'

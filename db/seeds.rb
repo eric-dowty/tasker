@@ -8,13 +8,20 @@ class Seed
     create_guest_user
     create_lists
     create_tasks
+    create_sms_list
   end 
 
   def self.development
     create_guest_user
     create_lists
     create_tasks
+    create_sms_list
   end 
+
+  def self.create_sms_list
+    List.create(title: "SMS Tasks", description: "Tasks sents via SMS.")
+    puts 'SMS Tasks list created'
+  end
 
   def self.create_guest_user
     User.create(nickname: 'Guest', 
