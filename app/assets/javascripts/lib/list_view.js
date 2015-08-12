@@ -5,6 +5,7 @@ function createListView(list){
   buildEditListButton(list);
   buildShowEditListButton(list);
   buildNewTaskButton(list);
+  buildSortByStatusButton(list);
   createTaskIndex(list);
 };
 
@@ -81,6 +82,23 @@ function buildNewTaskButton(list){
   appendNewTaskButtonToDOM(button);
 };
 
+function buildSortByStatusButton(list){
+  var button = document.createElement("button");
+  $(button).addClass("waves-effect waves-light btn light-green darken-2 task-btn");
+  button.innerHTML = "Sort by Status";
+  button.addEventListener('click', function(){
+    $.ajax({
+      url: '/status_lists/'+list.id,
+      type: 'GET',
+      success: function(response){
+        removeOldButtons();      
+        createListView(response);
+      }
+    });
+  }); 
+  appendSortByStatusButtonToDOM(button);
+}
+
 function appendDeleteListButtonToDOM(button){
   $("#delete_list_button")[0].appendChild(button);
 };
@@ -97,12 +115,17 @@ function appendNewTaskButtonToDOM(button){
    $("#new_task_button")[0].appendChild(button);  
 };
 
+function appendSortByStatusButtonToDOM(button){
+   $("#sort_status_button")[0].appendChild(button);  
+};
+
 function setUpdateListInputs(list){
   $('#update_list_title')[0].value = list.title;
   $('#update_list_description')[0].value = list.description;
 };
 
 function removeOldButtons(){
+  $("#sort_status_button")[0].innerHTML = '';
   $("#new_task_button")[0].innerHTML = '';
   $("#delete_list_button")[0].innerHTML = '';
   $("#edit_list_button")[0].innerHTML = '';
