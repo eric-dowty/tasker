@@ -31,10 +31,14 @@ class TasksController < ApplicationController
     respond_with Task.with_user_info_by_due_date(task_params[:list_id]), location: nil
   end
 
+  def by_list_and_search_term
+    respond_with Task.with_user_info_by_search_term(task_params[:list_id], task_params[:search_term]), location: nil
+  end
+
   private
 
   def task_params
-    params.require(:task).permit(:id, :list_id, :title, :notes, :user_id, :start_date, :due_date)
+    params.require(:task).permit(:id, :list_id, :title, :notes, :user_id, :start_date, :due_date, :search_term)
   end
 
 end

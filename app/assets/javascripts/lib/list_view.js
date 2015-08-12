@@ -1,5 +1,5 @@
-function createListView(list, task){
-  removeOldButtons(); 
+function createListView(list, task, searching){
+  removeOldButtons(searching); 
   setCardData(list);
   buildDeleteListButton(list);
   buildEditListButton(list);
@@ -8,6 +8,7 @@ function createListView(list, task){
   buildSortByStatusButton(list);
   buildSortByTitleButton(list);
   buildSortByDueButton(list);
+  if(!searching){ buildSearchTasksField(list); }
   if(task){ 
     buildTaskListForDOM(list, task);
   } else {
@@ -142,6 +143,26 @@ function buildSortByDueButton(list){
   appendSortByDueButtonToDOM(button);
 };
 
+function buildSearchTasksField(list){
+  var input = document.createElement("input");
+  input.type = 'text';
+  input.placeholder = "Enter search term(s)";
+  $(input).attr('id', 'search_field');
+  input.addEventListener('keyup', function(key){
+    var term = $('#search_field')[0].value;
+    $.ajax({
+      url: '/by_list_and_search_term',
+      type: 'GET',
+      data: { 'task': { 'list_id': list.id, 'search_term': term } },
+      success: function(response){
+        clearTasksFromList();
+        createListView(list, response, true);
+      }
+    });
+  }); 
+  appendSearchTasksFieldToDOM(input);
+};
+
 function appendDeleteListButtonToDOM(button){
   $("#delete_list_button")[0].appendChild(button);
 };
@@ -170,12 +191,19 @@ function appendSortByDueButtonToDOM(button){
    $("#sort_due_button")[0].appendChild(button);  
 };
 
+function appendSearchTasksFieldToDOM(input){
+   $("#search_tasks_div")[0].appendChild(input);  
+};
+
 function setUpdateListInputs(list){
   $('#update_list_title')[0].value = list.title;
   $('#update_list_description')[0].value = list.description;
 };
 
-function removeOldButtons(){
+function removeOldButtons(searching){
+  if(!searching){
+    $("#search_tasks_div")[0].innerHTML = '';
+  }
   $("#sort_due_button")[0].innerHTML = '';
   $("#sort_title_button")[0].innerHTML = '';
   $("#sort_status_button")[0].innerHTML = '';

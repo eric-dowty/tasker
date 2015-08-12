@@ -35,6 +35,11 @@ class Task < ActiveRecord::Base
     map_users(tasks)
   end
 
+  def self.with_user_info_by_search_term(list_id, search_term = '')
+    tasks = Task.includes(:user).where(list_id: list_id).where("title like ?", "%" + search_term + "%")
+    map_users(tasks)
+  end
+
   def self.map_users(tasks)
     tasks.map { |task| { image_url: task.user.image_url, task: task }.to_json }
   end
