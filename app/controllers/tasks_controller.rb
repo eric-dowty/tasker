@@ -19,6 +19,10 @@ class TasksController < ApplicationController
     respond_with Task.create(task_params), location: nil
   end
 
+  def by_list_and_status
+    respond_with Task.with_user_info_by_status(task_params[:list_id]), location: nil
+  end
+
   private
 
   def task_params

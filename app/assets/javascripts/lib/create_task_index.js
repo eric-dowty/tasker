@@ -16,13 +16,17 @@ function getTasksFromList(list){
       if(response.length === 0){
         addNoTasksMessage();
       } else {
-        response.forEach(function(task){
-          parsedTask = JSON.parse(task).task;
-          parsedImageUrl = JSON.parse(task).image_url;
-          createTaskCard(list, parsedTask, parsedImageUrl);
-        });
+        buildTaskListForDOM(list, response)
       }
     }
+  });
+};
+
+function buildTaskListForDOM(list, tasks){
+  tasks.forEach(function(task){
+    parsedTask = JSON.parse(task).task;
+    parsedImageUrl = JSON.parse(task).image_url;
+    createTaskCard(list, parsedTask, parsedImageUrl);
   });
 };
 

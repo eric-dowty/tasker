@@ -84,15 +84,16 @@ function buildNewTaskButton(list){
 
 function buildSortByStatusButton(list){
   var button = document.createElement("button");
-  $(button).addClass("waves-effect waves-light btn light-green darken-2 task-btn");
+  $(button).addClass("waves-effect waves-light btn amber darken-2 task-btn");
   button.innerHTML = "Sort by Status";
   button.addEventListener('click', function(){
     $.ajax({
-      url: '/status_lists/'+list.id,
+      url: '/by_list_and_status',
       type: 'GET',
+      data: { 'task': { 'list_id': list.id } },
       success: function(response){
-        removeOldButtons();      
-        createListView(response);
+        clearTasksFromList();
+        buildTaskListForDOM(list, response);
       }
     });
   }); 
