@@ -4,6 +4,7 @@ function createListView(list){
   buildDeleteListButton(list);
   buildEditListButton(list);
   buildShowEditListButton(list);
+  buildNewTaskButton(list);
   createTaskIndex(list);
 };
 
@@ -70,6 +71,16 @@ function buildShowEditListButton(list){
   appendShowEditListButtonToDOM(button);
 };
 
+function buildNewTaskButton(list){
+  var button = document.createElement("button");
+  $(button).addClass("waves-effect waves-light btn light-green darken-2 task-btn");
+  button.innerHTML = "New Task";
+  button.addEventListener('click', function(){
+    buildNewTaskCard(list);
+  }); 
+  appendNewTaskButtonToDOM(button);
+};
+
 function appendDeleteListButtonToDOM(button){
   $("#delete_list_button")[0].appendChild(button);
 };
@@ -82,12 +93,17 @@ function appendShowEditListButtonToDOM(button){
   $("#show_edit_list_button")[0].appendChild(button);
 };
 
+function appendNewTaskButtonToDOM(button){
+   $("#new_task_button")[0].appendChild(button);  
+};
+
 function setUpdateListInputs(list){
   $('#update_list_title')[0].value = list.title;
   $('#update_list_description')[0].value = list.description;
 };
 
 function removeOldButtons(){
+  $("#new_task_button")[0].innerHTML = '';
   $("#delete_list_button")[0].innerHTML = '';
   $("#edit_list_button")[0].innerHTML = '';
   $("#show_edit_list_button")[0].innerHTML = '';
