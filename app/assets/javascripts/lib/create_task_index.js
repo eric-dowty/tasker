@@ -35,7 +35,7 @@ function createTaskCard(list, task, imageUrl){
 
 function addNoTasksMessage(){
   var li = document.createElement("li");
-  li.innerHTML = "No tasks created yet."
+  li.innerHTML = "No incomplete tasks in queu."
   $('#list_tasks')[0].appendChild(li);
 };
 
@@ -67,6 +67,7 @@ function getCardHTML(task, imageUrl){
                 +"<div><span class='card-title black-text' id='task_image'>Submitter: <img class='fingernail' src='"+imageUrl+"'></span></div>"
               +"</div>"
               +"<div class='card-action'>"
+               +"<div id='show_edit_task_button'></div>"
                +"<div id='delete_task_button'></div>"
               +"</div>"
             +"</div>"

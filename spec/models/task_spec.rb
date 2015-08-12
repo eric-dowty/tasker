@@ -54,4 +54,38 @@ RSpec.describe Task, type: :model do
     expect(task.user).to eq(@user)
     expect(task.list).to eq(@list)
   end
+
+  xit 'is invalid with a start date in the past' do
+    task = Task.create(list_id:    @list.id,
+                       user_id:    @user.id,
+                       title:      'new task',
+                       status:     'incomplete',
+                       notes:      'some notes',
+                       due_date:   DateTime.now,
+                       start_date: Date.yesterday)
+    expect(task).to be_invalid
+  end
+
+  xit 'is invalid with a due date in the past' do
+    task = Task.create(list_id:    @list.id,
+                       user_id:    @user.id,
+                       title:      'new task',
+                       status:     'incomplete',
+                       notes:      'some notes',
+                       due_date:   Date.yesterday,
+                       start_date: DateTime.now)
+    expect(task).to be_invalid
+  end
+
+  xit 'is invalid with a start and due date in the past' do
+    task = Task.create(list_id:    @list.id,
+                       user_id:    @user.id,
+                       title:      'new task',
+                       status:     'incomplete',
+                       notes:      'some notes',
+                       due_date:   Date.yesterday,
+                       start_date: DateTime.yesterday)
+    expect(task).to be_invalid
+  end
+
 end

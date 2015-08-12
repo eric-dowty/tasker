@@ -38,7 +38,7 @@ class Seed
                                   notes:      Faker::Lorem.sentence,
                                   user_id:    user_id,
                                   due_date:   Faker::Date.forward(random_days_ahead),
-                                  start_date: Faker::Date.between(2.days.ago, Date.today))
+                                  start_date: Date.yesterday)
       end
     end
     puts "50 tasks created"

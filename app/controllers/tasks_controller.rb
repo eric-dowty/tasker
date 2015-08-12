@@ -4,12 +4,15 @@ class TasksController < ApplicationController
   respond_to :json
 
   def list_tasks
-    tasks = Task.with_user_info(task_params[:list_id])
-    respond_with tasks, location: nil
+    respond_with Task.with_user_info(task_params[:list_id]), location: nil
   end
 
   def destroy
-    respond_with Task.find(task_params[:id]).update(status: 'complete'), location: nil
+    respond_with Task.find(task_params[:id]).switch_status, location: nil
+  end
+
+  def update
+    respond_with Task.update(params[:id], task_params), location: nil
   end
 
   def create
@@ -19,7 +22,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:id, :list_id, :title, :notes, :user_id)
+    params.require(:task).permit(:id, :list_id, :title, :notes, :user_id, :start_date, :due_date)
   end
 
 end
