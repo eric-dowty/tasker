@@ -25,6 +25,16 @@ class Task < ActiveRecord::Base
     map_users(tasks)
   end
 
+  def self.with_user_info_by_title(list_id)
+    tasks = Task.includes(:user).where(list_id: list_id).where(status: 'incomplete').order(:title)
+    map_users(tasks)
+  end
+
+  def self.with_user_info_by_due_date(list_id)
+    tasks = Task.includes(:user).where(list_id: list_id).where(status: 'incomplete').order(:due_date)
+    map_users(tasks)
+  end
+
   def self.map_users(tasks)
     tasks.map { |task| { image_url: task.user.image_url, task: task }.to_json }
   end

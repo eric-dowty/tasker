@@ -23,6 +23,14 @@ class TasksController < ApplicationController
     respond_with Task.with_user_info_by_status(task_params[:list_id]), location: nil
   end
 
+  def by_list_and_title
+    respond_with Task.with_user_info_by_title(task_params[:list_id]), location: nil
+  end
+
+  def by_list_and_due_date
+    respond_with Task.with_user_info_by_due_date(task_params[:list_id]), location: nil
+  end
+
   private
 
   def task_params

@@ -85,9 +85,11 @@
 
 .task-btn {
   font-size: 60%;
-  width: 140px;
+  width: 100px;
   height: 25px !important;
   margin: 5px;
+  padding: 2px !important;
+  padding-bottom: 16px !important;
 }
 
 #error_message {

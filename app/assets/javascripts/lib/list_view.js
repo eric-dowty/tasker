@@ -1,4 +1,4 @@
-function createListView(list){
+function createListView(list, task){
   removeOldButtons(); 
   setCardData(list);
   buildDeleteListButton(list);
@@ -6,7 +6,13 @@ function createListView(list){
   buildShowEditListButton(list);
   buildNewTaskButton(list);
   buildSortByStatusButton(list);
-  createTaskIndex(list);
+  buildSortByTitleButton(list);
+  buildSortByDueButton(list);
+  if(task){ 
+    buildTaskListForDOM(list, task);
+  } else {
+    createTaskIndex(list);    
+  }
 };
 
 function setCardData(list){
@@ -93,12 +99,48 @@ function buildSortByStatusButton(list){
       data: { 'task': { 'list_id': list.id } },
       success: function(response){
         clearTasksFromList();
-        buildTaskListForDOM(list, response);
+        createListView(list, response);
       }
     });
   }); 
   appendSortByStatusButtonToDOM(button);
-}
+};
+
+function buildSortByTitleButton(list){
+  var button = document.createElement("button");
+  $(button).addClass("waves-effect waves-light btn amber darken-2 task-btn");
+  button.innerHTML = "Sort by Title";
+  button.addEventListener('click', function(){
+    $.ajax({
+      url: '/by_list_and_title',
+      type: 'GET',
+      data: { 'task': { 'list_id': list.id } },
+      success: function(response){
+        clearTasksFromList();
+        createListView(list, response);
+      }
+    });
+  }); 
+  appendSortByTitleButtonToDOM(button);
+};
+
+function buildSortByDueButton(list){
+  var button = document.createElement("button");
+  $(button).addClass("waves-effect waves-light btn amber darken-2 task-btn");
+  button.innerHTML = "Sort by Due Date";
+  button.addEventListener('click', function(){
+    $.ajax({
+      url: '/by_list_and_due_date',
+      type: 'GET',
+      data: { 'task': { 'list_id': list.id } },
+      success: function(response){
+        clearTasksFromList();
+        createListView(list, response);
+      }
+    });
+  }); 
+  appendSortByDueButtonToDOM(button);
+};
 
 function appendDeleteListButtonToDOM(button){
   $("#delete_list_button")[0].appendChild(button);
@@ -120,12 +162,22 @@ function appendSortByStatusButtonToDOM(button){
    $("#sort_status_button")[0].appendChild(button);  
 };
 
+function appendSortByTitleButtonToDOM(button){
+   $("#sort_title_button")[0].appendChild(button);  
+};
+
+function appendSortByDueButtonToDOM(button){
+   $("#sort_due_button")[0].appendChild(button);  
+};
+
 function setUpdateListInputs(list){
   $('#update_list_title')[0].value = list.title;
   $('#update_list_description')[0].value = list.description;
 };
 
 function removeOldButtons(){
+  $("#sort_due_button")[0].innerHTML = '';
+  $("#sort_title_button")[0].innerHTML = '';
   $("#sort_status_button")[0].innerHTML = '';
   $("#new_task_button")[0].innerHTML = '';
   $("#delete_list_button")[0].innerHTML = '';
