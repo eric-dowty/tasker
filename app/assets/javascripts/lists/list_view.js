@@ -7,8 +7,12 @@ function createListView(list){
 };
 
 function setCardData(list){
-  $('#list_title')[0].innerHTML       = list.title;
-  $('#list_description')[0].innerHTML = list.description;
+  $('#list_title')[0].innerHTML       = "Title: "+list.title;
+  var description = list.description
+  if(!description){
+    description = "No description provided."
+  }
+  $('#list_description')[0].innerHTML = "Description: "+description;
 };
 
 function buildDeleteListButton(list){
