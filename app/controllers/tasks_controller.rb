@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   respond_to :json
 
   def list_tasks
-    respond_with Task.where(list_id: task_params[:list_id]).order('updated_at DESC'), location: nil
+    tasks = Task.with_user_info(task_params[:list_id])
+    respond_with tasks, location: nil
   end
 
   def destroy

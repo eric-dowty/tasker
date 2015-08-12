@@ -17,16 +17,18 @@ function getTasksFromList(list){
         addNoTasksMessage();
       } else {
         response.forEach(function(task){
-          createTaskCard(list, task);
+          parsedTask = JSON.parse(task).task;
+          parsedImageUrl = JSON.parse(task).image_url;
+          createTaskCard(list, parsedTask, parsedImageUrl);
         });
       }
     }
   });
 };
 
-function createTaskCard(list, task){
+function createTaskCard(list, task, imageUrl){
   var li = document.createElement("li");
-  li.innerHTML = getCardHTML(task);
+  li.innerHTML = getCardHTML(task, imageUrl);
   appendTaskToDOM(li);
   addButtonsToTask(list, task);
 };
@@ -52,13 +54,17 @@ function getUserData(task){
   })
 }
 
-function getCardHTML(task, user_data){
+function parseDate(dateString){
+  return dateString.split("T")[0];
+};
+
+function getCardHTML(task, imageUrl){
   var card = "<div class='card deep-orange lighten-5'>"
               +"<div class='card-content black-text'>"
                 +"<div><span class='card-title black-text' id='task_title'>Task title: "+task.title+"</span></div>"
                 +"<div><span class='card-title black-text' id='task_notes'>Notes: "+task.notes+"</span></div>"
-                +"<div><span class='card-title black-text' id='task_status'>Status: "+task.status+"</span></div>"
-                +"<div><span class='card-title black-text' id='task_image'>Submitter: <div id='submitter'></div></span></div>"
+                +"<div><span class='card-title black-text' id='task_status'>Status: "+task.status+"<br>Start: "+parseDate(task.start_date)+"<br>Due: "+parseDate(task.due_date)+"</span></div>"
+                +"<div><span class='card-title black-text' id='task_image'>Submitter: <img class='fingernail' src='"+imageUrl+"'></span></div>"
               +"</div>"
               +"<div class='card-action'>"
                +"<div id='delete_task_button'></div>"
