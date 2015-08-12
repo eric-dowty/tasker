@@ -24,7 +24,7 @@ class ListsController < ApplicationController
   end
 
   def all_lists
-    respond_with List.includes(:tasks).all.reverse_order, location: nil
+    respond_with List.includes(:tasks).all.order('updated_at DESC'), location: nil
   end
 
   private
