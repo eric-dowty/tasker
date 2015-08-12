@@ -78,3 +78,17 @@
   margin: 5px;
   text-align: center;
 }
+
+#error_message {
+  display: none;
+  opacity: .6;
+  position: absolute;
+  width: 250px;
+  height: 25px;
+  background-color: #ff4081;
+  top: 65px;
+  right: calc(50% - 50px);
+  text-align: center;
+  color: white;
+  border-radius: 15px;  
+}

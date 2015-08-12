@@ -4,6 +4,7 @@ function createListView(list){
   buildDeleteListButton(list);
   buildEditListButton(list);
   buildShowEditListButton(list);
+  createTaskIndex(list);
 };
 
 function setCardData(list){
@@ -51,6 +52,8 @@ function makeListUpdates(list){
     data: { 'list': { 'title': title, 'description': description } },
     success: function(){
       populateLists();
+    }, error: function(){
+      showUserError("Title cannot be blank.")
     }
   });
 };
