@@ -8,7 +8,7 @@ function createListView(list){
 };
 
 function setCardData(list){
-  $('#list_title')[0].innerHTML       = "Title: "+list.title;
+  $('#list_title')[0].innerHTML       = "List title: "+list.title;
   var description = list.description
   if(!description){
     description = "No description provided."
@@ -18,7 +18,7 @@ function setCardData(list){
 
 function buildDeleteListButton(list){
   var button = document.createElement("button");
-  $(button).addClass("waves-effect waves-light btn pink accent-2");
+  $(button).addClass("waves-effect waves-light btn pink accent-2 list-btn");
   button.innerHTML = "Delete List!";
   button.addEventListener('click', function(){
     $.ajax({
@@ -35,7 +35,7 @@ function buildDeleteListButton(list){
 
 function buildEditListButton(list){
   var button = document.createElement("button");
-  $(button).addClass("waves-effect waves-light btn light-green darken-2");
+  $(button).addClass("waves-effect waves-light btn light-green darken-2 list-btn");
   button.innerHTML = "Update List";
   button.addEventListener('click', function(){
     makeListUpdates(list);
@@ -60,7 +60,7 @@ function makeListUpdates(list){
 
 function buildShowEditListButton(list){
   var button = document.createElement("button");
-  $(button).addClass("waves-effect waves-light btn light-green darken-2");
+  $(button).addClass("waves-effect waves-light btn light-green darken-2 list-btn");
   button.innerHTML = "Edit List";
   button.addEventListener('click', function(){
     $('#top_list')[0].style.display = 'none';

@@ -73,10 +73,21 @@
   font-size: 115%;
 }
 
-.btn {
-  width: 150px;
+#task_header {
+  font-size: 115%; 
+}
+
+.list-btn {
+  width: 160px;
   margin: 5px;
   text-align: center;
+}
+
+.task-btn {
+  font-size: 60%;
+  width: 100px;
+  height: 25px !important;
+  margin: 5px;
 }
 
 #error_message {
@@ -91,4 +102,20 @@
   text-align: center;
   color: white;
   border-radius: 15px;  
+}
+
+#task_title {
+  font-size: 100%;
+}
+
+#task_notes {
+  font-size: 90%;
+}
+
+#task_status {
+  font-size: 90%;
+}
+
+#task_image {
+  font-size: 90%;
 }
